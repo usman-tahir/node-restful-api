@@ -1,2 +1,2 @@
 # node-restful-api
-A RESTful API created with MongoDB and Node
+RESTful examples and snippets using Express, Node.js, and MongoDB
