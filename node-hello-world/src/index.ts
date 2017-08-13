@@ -17,5 +17,19 @@ app.get('/api/sayhello/:name', (request, response) => {
   }
 });
 
+app.get('/api/sayhello/', (request, response) => {
+  let name = request.query.name;
+  let result = {
+    message: name
+  }
+
+  if (!isNaN(name)) {
+    response.status(400)
+      .send('No string as a name');
+  } else {
+    response.json(result);
+  }
+});
+
 app.listen(3000);
 console.log('listening on port 3000');
