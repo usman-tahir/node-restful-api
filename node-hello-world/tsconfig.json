@@ -4,10 +4,10 @@
     "module": "commonjs",
     "outDir": "dist"
   },
-  "include": {
+  "include": [
     "src/**/*.ts"
-  },
-  "exclude": {
+  ],
+  "exclude": [
     "node_modules"
-  }
+  ]
 }
