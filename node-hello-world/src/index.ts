@@ -1,34 +1,31 @@
 import express = require('express');
 let app = express();
 
+// POST support
+let bodyParser = require('body-parser');
+let multer = require('multer');
+let upload = multer();
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
 app.get('/', (request, response) => {
   response.send('hello world');
 });
 
-app.get('/api/sayhello/:name', (request, response) => {
-  let name = request.params.name;
-  if (!isNaN(name)) {
-    response.status(400)
-      .send('No string as a name');
-  } else {
-    response.json({
-      "message": name
-    });
-  }
-});
-
-app.get('/api/sayhello/', (request, response) => {
-  let name = request.query.name;
-  let result = {
-    message: name
-  }
+app.post('/api/sayhello', upload.array(), (request, response) => {
+  let name = request.body.name;
 
   if (!isNaN(name)) {
-    response.status(400)
+    response
+      .status(400)
       .send('No string as a name');
   } else {
-    response.json(result);
+    console.log('Hello, ' + name);
   }
+
+  response.send('POST request to homepage');
 });
 
 app.listen(3000);
